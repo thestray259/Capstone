@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 using BehaviorTree; 
 
 public class Follow : Node
 {
     private Transform transform;
-    private Transform playerTransform; 
+    private Transform playerTransform;
 
     public Follow(Transform transform, Transform playerTransform)
     {
         this.transform = transform;
-        this.playerTransform = playerTransform; 
+        this.playerTransform = playerTransform;
     }
 
     public override NodeState Evaluate()
