@@ -123,6 +123,32 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 73058b8b4bba4d54892871ebfd2668d9, type: 2}
+--- !u!114 &266267646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5baaf931467ff814da8d7f3d981a7c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  workflow: 1
+  meshBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  pivotPos: {x: 0, y: 0, z: 0}
+  height: 600
+  bottom: 0
+  size: {x: 1000, y: 600, z: 1000}
+  centerPostion: {x: 0, y: 300, z: 0}
+  originPosition: {x: -500, y: 0, z: -500}
+  terrains:
+  - {fileID: 1523273386}
+  meshes: []
+  terrainScaleOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &543632851
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,14 +443,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015514489}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.19144653, y: -0, z: -0, w: 0.98150307}
+  m_LocalPosition: {x: 0, y: 3.65, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 22.074, y: 0, z: 0}
 --- !u!1 &1523273384
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,6 +462,7 @@ GameObject:
   - component: {fileID: 1523273387}
   - component: {fileID: 1523273386}
   - component: {fileID: 1523273385}
+  - component: {fileID: 1523273388}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -503,6 +530,51 @@ Transform:
   m_Father: {fileID: 543632852}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1523273388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523273384}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9599e306adaa6c4fbbc62724eff2685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debug: 0
+  performCleanup: 1
+  manualInput: 0
+  terrainObjects:
+  - {fileID: 1523273384}
+  util: {fileID: 266267646}
+  workflow: 1
+  resIdx: 4
+  targetSize: {x: 1000, y: 600, z: 1000}
+  targetOriginPosition: {x: -500, y: 0, z: -500}
+  targetCenterPosition: {x: 0, y: 300, z: 0}
+  terrainScaleOffset: {x: 0, y: 0, z: 0, w: 0}
+  terrains:
+  - {fileID: 1523273386}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  renderLightBrightness: 0.25
+  useAlternativeRenderer: 0
+  inputHeightmap: {fileID: 0}
+  customPigmentMap: {fileID: 0}
+  useCustomPigmentMap: 0
+  flipVertically: 0
+  flipHortizontally: 0
+  textureRotation: 0
+  pigmentMap: {fileID: 0}
+  isMultiTerrain: 0
+  savePath: 
+  hasTerrainData: 1
+  isMegaSplat: 0
+  heightmapChannel: 0
+  HeightmapChannelName: 
+  terrainTextureNames: []
 --- !u!1001 &1576055503
 PrefabInstance:
   m_ObjectHideFlags: 0
