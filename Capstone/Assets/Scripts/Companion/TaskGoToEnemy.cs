@@ -12,9 +12,10 @@ public class TaskGoToEnemy : Node
 
     public override NodeState Evaluate()
     {
+        Debug.Log("Companion entered TaskGoToEnemy");
         Transform target = (Transform)GetData("target"); 
 
-        if (Vector3.Distance(transform.position, target.position) > 0.3f)
+        if (Vector3.Distance(transform.position, target.position) > 0.5f)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, CompanionBT.speed * Time.deltaTime);
             transform.LookAt(target.position); 

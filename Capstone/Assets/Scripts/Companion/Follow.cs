@@ -18,6 +18,7 @@ public class Follow : Node
 
     public override NodeState Evaluate()
     {
+        Debug.Log("Companion entered Follow");
         if (Vector3.Distance(transform.position, playerTransform.position) > 3.0f)
         {
             transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, CompanionBT.speed * Time.deltaTime);

@@ -12,6 +12,24 @@ public class CheckEnemyInAttackRange : Node
 
     public override NodeState Evaluate()
     {
-        return base.Evaluate();
+        Debug.Log("Companion entered CheckEnemyInAttackRange");
+        object t = GetData("target"); 
+        if (t == null)
+        {
+            state = NodeState.FAILURE;
+            return state; 
+        }
+
+        Transform target = (Transform)t; 
+        if (Vector3.Distance(transform.position, target.position) <= CompanionBT.attackRange)
+        {
+            // set animations here maybe
+
+            state = NodeState.SUCCESS;
+            return state; 
+        }
+
+        state = NodeState.FAILURE;
+        return state; 
     }
 }
