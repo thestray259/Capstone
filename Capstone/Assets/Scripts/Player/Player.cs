@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         // use mouse position to change camera
 
         // move character (xyz)
-        Move(); 
+        Move(view); 
 
         // face direction (needs fixing)
         if (direction.magnitude > 0)
@@ -70,30 +70,30 @@ public class Player : MonoBehaviour
         rb.AddForce(force, forceMode); 
     }
 
-    private void Move()
+    private void Move(Transform view)
     {
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             // move forward
-            transform.position += speed * Time.deltaTime * transform.forward;
+            transform.position += speed * Time.deltaTime * view.forward;
         }
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             // move left 
-            transform.position += speed * Time.deltaTime * Vector3.left; 
+            transform.position += speed * Time.deltaTime * -view.right; 
         }
 
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             // move backwards 
-            transform.position += speed * Time.deltaTime * -transform.forward;
+            transform.position += speed * Time.deltaTime * -view.forward;
         }
 
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             // move right 
-            transform.position += speed * Time.deltaTime * Vector3.right;
+            transform.position += speed * Time.deltaTime * view.right;
         }
     }
 }
