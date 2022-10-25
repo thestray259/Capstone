@@ -53,11 +53,12 @@ public class Player : MonoBehaviour
         }
         velocity += Physics.gravity * Time.deltaTime;
 
+        // use mouse position to change camera
+
         // move character (xyz)
-        //controller.Move(((direction * speed) + velocity) * Time.deltaTime);
         Move(); 
 
-        // face direction
+        // face direction (needs fixing)
         if (direction.magnitude > 0)
         {
             //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), turnRate * Time.deltaTime);
@@ -71,8 +72,6 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        // use mouseposition to change camera direction
-
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             // move forward
