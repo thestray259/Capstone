@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     Rigidbody rb;
     Vector3 force = Vector3.zero; 
-    Vector3 velocity = Vector3.zero;
+    [SerializeField] Vector3 velocity = Vector3.zero;
     bool isGrounded = false; 
     float airTime = 0;
     float distToGround = 0.5f; 
@@ -40,18 +40,23 @@ public class Player : MonoBehaviour
 
         // y movement
         // !!! check if grounded for jump !!!
-        if (Input.GetKeyDown(KeyCode.Space))
+/*        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Jumping"); 
-            velocity.y = jumpForce;
+            Debug.Log("Jumping");
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); 
+
+            //if (velocity.y < 0) velocity.y = 0;
+            //velocity.y = jumpForce;
             //rb.velocity += (Vector3.up * jumpForce); 
-            /*            airTime = 0;
+            Debug.Log("Y Velocity: " + velocity.y); 
+            Debug.Log("RB Y Velocity: " + rb.velocity.y); 
+            *//*            airTime = 0;
                         if (velocity.y < 0) velocity.y = 0;
                         if (Input.GetKeyDown(KeyCode.Space))
                         {
                             velocity.y = jumpForce;
-                        }*/
-        }
+                        }*//*
+        }*/
 /*        else
         {
             airTime += Time.deltaTime;
@@ -59,7 +64,8 @@ public class Player : MonoBehaviour
         velocity += Physics.gravity * Time.deltaTime;
 
         // move character (xyz)
-        Move(view); 
+        Move(view);
+        OnJump(); 
 
         // face direction (needs fixing)
         if (direction.magnitude > 0)
@@ -113,5 +119,14 @@ public class Player : MonoBehaviour
             Debug.Log("Not Grounded");
             isGrounded = false; 
         }
+    }
+
+    private void OnJump()
+    {
+        if (isGrounded && Input.GetKey(KeyCode.Space))
+        {
+            Debug.Log("Jumping"); 
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        } 
     }
 }
