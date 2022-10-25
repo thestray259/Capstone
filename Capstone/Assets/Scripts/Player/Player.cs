@@ -75,25 +75,25 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             // move forward
-            transform.position += transform.forward * speed * Time.deltaTime;
+            transform.position += speed * Time.deltaTime * transform.forward;
         }
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             // move left 
-            transform.position += (Vector3.left) * speed * Time.deltaTime; 
+            transform.position += speed * Time.deltaTime * Vector3.left; 
         }
 
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             // move backwards 
-            transform.position += -transform.forward * speed * Time.deltaTime;
+            transform.position += speed * Time.deltaTime * -transform.forward;
         }
 
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             // move right 
-            transform.position += (Vector3.right) * speed * Time.deltaTime;
+            transform.position += speed * Time.deltaTime * Vector3.right;
         }
     }
 }
