@@ -65,7 +65,8 @@ public class Player : MonoBehaviour
 
         // move character (xyz)
         Move(view);
-        OnJump(); 
+        OnJump();
+        OnAttack(); 
 
         // face direction (needs fixing)
         if (direction.magnitude > 0)
@@ -121,12 +122,23 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnJump()
+    private void OnJump() // needs work
     {
         if (isGrounded && Input.GetKey(KeyCode.Space))
         {
             Debug.Log("Jumping"); 
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         } 
+    }
+
+    private void OnAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0)) // left click
+        {
+            // primary / regular attack 
+            Debug.Log("Player Primary Attack"); 
+            // play attack animation 
+            // can't interupt animation with other attacks, but can with sprint/dodge 
+        }
     }
 }
