@@ -10,7 +10,6 @@ public class CompanionBT : Tree
 
     protected override Node SetupTree()
     {
-        //Node root = new Follow(transform, playerTransform);
         Node root = new Selector(new List<Node>
         {
             new Sequence(new List<Node>

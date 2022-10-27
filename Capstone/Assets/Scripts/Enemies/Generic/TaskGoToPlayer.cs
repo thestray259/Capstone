@@ -15,7 +15,7 @@ public class TaskGoToPlayer : Node
         Debug.Log("Enemy entered TaskGoToPlayer");
         Transform target = (Transform)GetData("target");
 
-        if (Vector3.Distance(transform.position, target.position) > 0.5f)
+        if (Vector3.Distance(transform.position, target.position) > 0.5f && Vector3.Distance(transform.position, target.position) < 5.0f) // quick fix, need to change later bc doesn't go back to idle 
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, GenEnemyBT.speed * Time.deltaTime);
             transform.LookAt(target.position);

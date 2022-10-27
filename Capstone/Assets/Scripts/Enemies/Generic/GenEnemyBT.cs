@@ -15,7 +15,7 @@ public class GenEnemyBT : Tree
         {
             new Sequence(new List<Node>
             {
-                new CheckEnemyInAttackRange(transform),
+                new CheckPlayerInAttackRange(transform),
                 new TaskAttackPlayer(transform)
             }),
             new Sequence(new List<Node>
