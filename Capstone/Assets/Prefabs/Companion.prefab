@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1513040902264404499}
   - component: {fileID: 4357785400420306027}
   - component: {fileID: 4668628863415106719}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,9 +111,9 @@ GameObject:
   - component: {fileID: 8752224888240831785}
   - component: {fileID: 8752224888240831790}
   - component: {fileID: 8752224888240831791}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Companion
-  m_TagString: Untagged
+  m_TagString: Companion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 8752224889216507874}
   - component: {fileID: 8752224889216507875}
   - component: {fileID: 8752224889216507872}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,6 +329,10 @@ PrefabInstance:
     - target: {fileID: 1000010547497730, guid: 4499464748f34274fa370f5c95eb83d3, type: 3}
       propertyPath: m_Name
       value: FoliageBender
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010547497730, guid: 4499464748f34274fa370f5c95eb83d3, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4000010368281114, guid: 4499464748f34274fa370f5c95eb83d3, type: 3}
       propertyPath: m_RootOrder
