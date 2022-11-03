@@ -7,7 +7,7 @@ using BehaviorTree;
 public class TaskGoToPlayer : Node
 {
     Transform transform;
-    float timer = 0.0f; 
+    public float timer = 0.0f; 
 
     public TaskGoToPlayer(Transform transform) { this.transform = transform; }
 
@@ -21,12 +21,12 @@ public class TaskGoToPlayer : Node
             transform.position = Vector3.MoveTowards(transform.position, target.position, GenEnemyBT.speed * Time.deltaTime);
             transform.LookAt(target.position);
 
+            if (Vector3.Distance(transform.position, target.position) < 5.0f) timer = 0;
             if (Vector3.Distance(transform.position, target.position) > 5.0f)
             {
                 timer += Time.deltaTime;
                 Debug.Log("Timer: " + timer); 
-            }
-            if (Vector3.Distance(transform.position, target.position) < 5.0f) timer = 0;
+            }            
         }
 
         // if player is too far away, start timer 
@@ -35,6 +35,8 @@ public class TaskGoToPlayer : Node
 
         if (timer >= 3.0f)
         {
+            //CheckForPlayer checkForPlayer = new CheckForPlayer(transform);
+            //checkForPlayer.colliders = null; 
             state = NodeState.FAILURE;
             return state; 
         }
