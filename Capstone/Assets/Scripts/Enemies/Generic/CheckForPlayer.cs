@@ -8,6 +8,7 @@ public class CheckForPlayer : Node
 {
     private Transform transform;
     private static int _playerLayerMask = 1 << 7;
+    float timer = 0.0f; 
 
     public CheckForPlayer(Transform transform) { this.transform = transform; }
 

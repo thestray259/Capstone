@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] CharacterController controller;
     //[SerializeField] Animator animator;
     [SerializeField] Transform view;
+    [SerializeField] Transform lookAt; 
     [SerializeField] float speed;
     [SerializeField] float jumpForce;
     [SerializeField] float turnRate;

@@ -6,7 +6,8 @@ using BehaviorTree;
 
 public class TaskGoToPlayer : Node
 {
-    Transform transform; 
+    Transform transform;
+    float timer = 0.0f; 
 
     public TaskGoToPlayer(Transform transform) { this.transform = transform; }
 
@@ -15,13 +16,32 @@ public class TaskGoToPlayer : Node
         Debug.Log("Enemy entered TaskGoToPlayer");
         Transform target = (Transform)GetData("target");
 
-        if (Vector3.Distance(transform.position, target.position) > 0.5f && Vector3.Distance(transform.position, target.position) < 5.0f) // quick fix, need to change later bc doesn't go back to idle 
+        if (Vector3.Distance(transform.position, target.position) > 0.5f && timer < 3.0f) // quick fix, need to change later bc doesn't go back to idle 
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, GenEnemyBT.speed * Time.deltaTime);
             transform.LookAt(target.position);
+
+            if (Vector3.Distance(transform.position, target.position) > 5.0f)
+            {
+                timer += Time.deltaTime;
+                Debug.Log("Timer: " + timer); 
+            }
+            if (Vector3.Distance(transform.position, target.position) < 5.0f) timer = 0;
         }
 
-        state = NodeState.RUNNING;
-        return state;
+        // if player is too far away, start timer 
+        // stop and reset timer if sees player 
+        // when timer gets to x value, return failure and exit 
+
+        if (timer >= 3.0f)
+        {
+            state = NodeState.FAILURE;
+            return state; 
+        }
+        else
+        {
+            state = NodeState.RUNNING;
+            return state;
+        }
     }
 }
