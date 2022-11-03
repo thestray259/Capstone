@@ -17,6 +17,7 @@ public class TaskGoToEnemy : Node
 
         if (Vector3.Distance(transform.position, target.position) > 0.5f)
         {
+            // change so that comp sees where player is and stays a distance away
             transform.position = Vector3.MoveTowards(transform.position, target.position, CompanionBT.speed * Time.deltaTime);
             transform.LookAt(target.position); 
         }
