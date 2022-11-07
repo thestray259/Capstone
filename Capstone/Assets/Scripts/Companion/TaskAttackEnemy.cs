@@ -10,14 +10,19 @@ public class TaskAttackEnemy : Node
     // private EnemyManager enemyManager; 
 
     private float attackTime = 1f;
-    private float attackCounter = 0; 
+    private float attackCounter = 0;
+
+    private Component component; 
 
     public TaskAttackEnemy(Transform transform) { }
 
     public override NodeState Evaluate()
     {
         Debug.Log("Companion entered TaskAttackEnemy"); 
-        Transform target = (Transform)GetData("target"); 
+        Transform target = (Transform)GetData("target");
+
+        Collider[] colliders = Physics.OverlapSphere(lastTarget.position, CompanionBT.attackRange);
+
         if (target != lastTarget)
         {
             // enemyManager = target.GetComponent<EnemyManager>(); 
@@ -27,13 +32,26 @@ public class TaskAttackEnemy : Node
         attackCounter += Time.deltaTime; 
         if (attackCounter >= attackTime)
         {
-            // bool isEnemyDead = enemyManager.TakeHit(); 
-/*            if (isEnemyDead)
+            foreach (Collider collider in colliders)
             {
-                ClearData("target"); 
+                if (collider.gameObject == component.gameObject) continue;
+
+                //if (tagName == "" || collider.CompareTag(tagName))
+                {
+                    if (collider.gameObject.TryGetComponent<GenEnemyBT>(out GenEnemyBT genEnemyBT))
+                    {
+                        genEnemyBT.gameObject.GetComponent<Health>().health -= CompanionBT.damage;
+                    }
+                }
             }
-            else */
-                attackCounter = 0f; 
+
+            // bool isEnemyDead = enemyManager.TakeHit(); 
+            /*            if (isEnemyDead)
+                        {
+                            ClearData("target"); 
+                        }
+                        else */
+            attackCounter = 0f; 
         }
 
         state = NodeState.RUNNING;

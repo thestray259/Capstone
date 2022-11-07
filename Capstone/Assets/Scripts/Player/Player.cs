@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
                 {
                     if (collider.gameObject.TryGetComponent<GenEnemyBT>(out GenEnemyBT genEnemyBT))
                     {
-                        GetComponent<Health>().health -= damage; 
+                        genEnemyBT.gameObject.GetComponent<Health>().health -= damage; 
                     }
                 }
             }
