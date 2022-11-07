@@ -12,7 +12,10 @@ public class Player : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float jumpForce;
     [SerializeField] float turnRate;
-    [SerializeField] ForceMode forceMode; 
+    [SerializeField] float attackDistance;
+    [SerializeField] float damage; 
+    [SerializeField] ForceMode forceMode;
+    [SerializeField] string tagName;
 
     Rigidbody rb;
     Vector3 force = Vector3.zero; 
@@ -134,12 +137,27 @@ public class Player : MonoBehaviour
 
     private void OnAttack()
     {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, attackDistance);
+
         if (Input.GetKeyDown(KeyCode.Mouse0)) // left click
         {
             // primary / regular attack 
-            Debug.Log("Player Primary Attack"); 
+            Debug.Log("Player Primary Attack");
             // play attack animation 
             // can't interupt animation with other attacks, but can with sprint/dodge 
+
+            foreach (Collider collider in colliders)
+            {
+                if (collider.gameObject == gameObject) continue;
+
+                if (tagName == "" || collider.CompareTag(tagName))
+                {
+                    if (collider.gameObject.TryGetComponent<GenEnemyBT>(out GenEnemyBT genEnemyBT))
+                    {
+                        GetComponent<Health>().health -= damage; 
+                    }
+                }
+            }
         }
     }
 }

@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 8752224888240831785}
   - component: {fileID: 8752224888240831790}
   - component: {fileID: 8752224888240831791}
+  - component: {fileID: 9164769892449888603}
   m_Layer: 8
   m_Name: Companion
   m_TagString: Companion
@@ -220,6 +221,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &9164769892449888603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8752224888240831788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d11cf8f9db7caf4b9cf248af43701ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathPrefab: {fileID: 0}
+  maxHealth: 100
+  destroyOnDeath: 1
+  destroyRoot: 0
+  health: 0
 --- !u!1 &8752224889216507878
 GameObject:
   m_ObjectHideFlags: 0
