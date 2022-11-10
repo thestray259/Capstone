@@ -36,7 +36,7 @@ public class Health : MonoBehaviour
             if (destroyOnDeath)
             {
                 if (destroyRoot) Destroy(gameObject.transform.root.gameObject);
-                else Destroy(gameObject);
+                else gameObject.SetActive(false); // actually disables it, not destroys it 
             }
         }
     }

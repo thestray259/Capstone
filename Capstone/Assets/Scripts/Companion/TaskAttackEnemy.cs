@@ -36,11 +36,13 @@ public class TaskAttackEnemy : Node
             {
                 if (collider.gameObject == component.gameObject) continue;
 
-                //if (tagName == "" || collider.CompareTag(tagName))
+                if (collider.CompareTag("Enemy"))
                 {
                     if (collider.gameObject.TryGetComponent<GenEnemyBT>(out GenEnemyBT genEnemyBT))
                     {
                         genEnemyBT.gameObject.GetComponent<Health>().health -= CompanionBT.damage;
+
+                        if (genEnemyBT.gameObject.GetComponent<Health>().health <= 0) ClearData("target"); 
                     }
                 }
             }

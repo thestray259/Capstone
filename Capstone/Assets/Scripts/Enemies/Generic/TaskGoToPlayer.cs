@@ -16,7 +16,7 @@ public class TaskGoToPlayer : Node
         Debug.Log("Enemy entered TaskGoToPlayer");
         Transform target = (Transform)GetData("target");
 
-        if (Vector3.Distance(transform.position, target.position) > 0.5f && timer < 3.0f) // quick fix, need to change later bc doesn't go back to idle 
+        if (Vector3.Distance(transform.position, target.position) > 0.5f && timer < 3.0f) 
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, GenEnemyBT.speed * Time.deltaTime);
             transform.LookAt(target.position);
@@ -35,15 +35,11 @@ public class TaskGoToPlayer : Node
 
         if (timer >= 3.0f)
         {
-            //CheckForPlayer checkForPlayer = new CheckForPlayer(transform);
-            //checkForPlayer.colliders = null; 
-            state = NodeState.FAILURE;
-            return state; 
+            ClearData("target");
+            timer = 0; 
         }
-        else
-        {
-            state = NodeState.RUNNING;
-            return state;
-        }
+
+        state = NodeState.RUNNING;
+        return state;
     }
 }
