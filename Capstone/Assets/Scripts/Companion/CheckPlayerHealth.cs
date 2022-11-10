@@ -22,15 +22,17 @@ public class CheckPlayerHealth : Node
         // if yes, return success 
         // else return failure 
 
+        // check heal timer
+        // if <= 0, then check player health 
+        // else return failure 
+
         if (playerObject.GetComponent<Health>().health <= 50)
         {
-            Debug.Log("CheckPlayerHealth success"); 
             state = NodeState.SUCCESS;
             return state; 
         }
         else
         {
-            Debug.Log("CheckPlayerHealth failure"); 
             state = NodeState.FAILURE;
             return state;
         }

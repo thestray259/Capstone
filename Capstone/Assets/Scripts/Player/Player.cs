@@ -47,35 +47,35 @@ public class Player : MonoBehaviour
 /*        if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Jumping");
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); 
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
-            //if (velocity.y < 0) velocity.y = 0;
-            //velocity.y = jumpForce;
-            //rb.velocity += (Vector3.up * jumpForce); 
-            Debug.Log("Y Velocity: " + velocity.y); 
-            Debug.Log("RB Y Velocity: " + rb.velocity.y); 
-            *//*            airTime = 0;
-                        if (velocity.y < 0) velocity.y = 0;
-                        if (Input.GetKeyDown(KeyCode.Space))
-                        {
-                            velocity.y = jumpForce;
-                        }*//*
-        }*/
-/*        else
+            if (velocity.y < 0) velocity.y = 0;
+            velocity.y = jumpForce;
+            rb.velocity += (Vector3.up * jumpForce); 
+            Debug.Log("Y Velocity: " + velocity.y);
+            Debug.Log("RB Y Velocity: " + rb.velocity.y);
+            airTime = 0;
+            if (velocity.y < 0) velocity.y = 0;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                velocity.y = jumpForce;
+            }
+        }
+        else
         {
             airTime += Time.deltaTime;
         }*/
-        velocity += Physics.gravity * Time.deltaTime;
+        //velocity += Physics.gravity * Time.deltaTime;
 
         // move character (xyz)
         Move(view);
         OnJump();
         OnAttack(); 
 
-        // face direction (needs fixing)
+        // face direction (needs fixing) - works when iskinematic = false 
         if (direction.magnitude > 0)
         {
-            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), turnRate * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), turnRate * Time.deltaTime);
         }
     }
 
@@ -128,10 +128,12 @@ public class Player : MonoBehaviour
 
     private void OnJump() // needs work
     {
-        if (isGrounded && Input.GetKey(KeyCode.Space))
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Jumping"); 
+            Debug.Log("Jumping");
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            //velocity.y = jumpForce; 
+            //controller.Move(Vector3.up * jumpForce); 
         } 
     }
 

@@ -830,6 +830,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4925204263729775794, guid: addb5c968196de048a913d043bd2e3c6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4925204263729775795, guid: addb5c968196de048a913d043bd2e3c6, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -900,11 +904,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4925204263729775797, guid: addb5c968196de048a913d043bd2e3c6, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4925204263729775799, guid: addb5c968196de048a913d043bd2e3c6, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: addb5c968196de048a913d043bd2e3c6, type: 3}
