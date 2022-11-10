@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     [SerializeField] Vector3 velocity = Vector3.zero;
     bool isGrounded = false; 
     float airTime = 0;
-    float distToGround = 0.5f; 
+    float distToGround = 0.5f;
 
     void Start()
     {

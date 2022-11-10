@@ -7,7 +7,6 @@ using BehaviorTree;
 public class TaskAttackPlayer : Node
 {
     private Transform lastTarget;
-    // private EnemyManager enemyManager; // this stuff but make it for player instead
 
     private float attackTime = 1f;
     private float attackCounter = 0;
@@ -20,19 +19,29 @@ public class TaskAttackPlayer : Node
         Transform target = (Transform)GetData("target");
         if (target != lastTarget)
         {
-            // enemyManager = target.GetComponent<EnemyManager>(); 
             lastTarget = target;
         }
+
+        Collider[] colliders = Physics.OverlapSphere(target.position, GenEnemyBT.attackRange);
 
         attackCounter += Time.deltaTime;
         if (attackCounter >= attackTime)
         {
-            // bool isEnemyDead = enemyManager.TakeHit(); 
-            /*            if (isEnemyDead)
-                        {
-                            ClearData("target"); 
-                        }
-                        else */
+            foreach (Collider collider in colliders)
+            {
+                //if (collider.gameObject == component.gameObject) continue; // was breaking it for some reason 
+
+                if (collider.CompareTag("Player"))
+                {
+                    if (collider.gameObject.TryGetComponent<Player>(out Player player))
+                    {
+                        player.gameObject.GetComponent<Health>().health -= GenEnemyBT.damage;
+
+                        if (player.gameObject.GetComponent<Health>().health <= 0) ClearData("target");
+                    }
+                }
+            }
+
             attackCounter = 0f;
         }
 

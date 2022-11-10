@@ -7,7 +7,6 @@ using BehaviorTree;
 public class TaskAttackEnemy : Node
 {
     private Transform lastTarget;
-    // private EnemyManager enemyManager; 
 
     private float attackTime = 1f;
     private float attackCounter = 0;
@@ -21,11 +20,10 @@ public class TaskAttackEnemy : Node
         Debug.Log("Companion entered TaskAttackEnemy"); 
         Transform target = (Transform)GetData("target");
 
-        Collider[] colliders = Physics.OverlapSphere(lastTarget.position, CompanionBT.attackRange);
+        Collider[] colliders = Physics.OverlapSphere(target.position, CompanionBT.attackRange); // used to be lastTarget.position but that was breaking it for some reason
 
         if (target != lastTarget)
         {
-            // enemyManager = target.GetComponent<EnemyManager>(); 
             lastTarget = target; 
         }
 
@@ -34,7 +32,7 @@ public class TaskAttackEnemy : Node
         {
             foreach (Collider collider in colliders)
             {
-                if (collider.gameObject == component.gameObject) continue;
+                //if (collider.gameObject == component.gameObject) continue; // was breaking it for some reason 
 
                 if (collider.CompareTag("Enemy"))
                 {
@@ -47,12 +45,6 @@ public class TaskAttackEnemy : Node
                 }
             }
 
-            // bool isEnemyDead = enemyManager.TakeHit(); 
-            /*            if (isEnemyDead)
-                        {
-                            ClearData("target"); 
-                        }
-                        else */
             attackCounter = 0f; 
         }
 

@@ -9,6 +9,8 @@ public class GenEnemyBT : Tree
     public static float fovRange = 6f;
     public static float attackRange = 1f;
 
+    public static float damage = 10f; 
+
     protected override Node SetupTree()
     {
         Node root = new Selector(new List<Node>

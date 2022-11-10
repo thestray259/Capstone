@@ -6,7 +6,7 @@ public class CompanionBT : Tree
     public UnityEngine.Transform playerTransform; 
     public static float speed = 5.0f;
     public static float fovRange = 6f;
-    public static float attackRange = 1f;
+    public static float attackRange = 2f;
     public static float damage = 10f; 
 
     protected override Node SetupTree()
