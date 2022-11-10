@@ -2574,12 +2574,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8752224888240831788, guid: 059184e574ec35a4285d224061b2f6a5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8752224888240831788, guid: 059184e574ec35a4285d224061b2f6a5, type: 3}
       propertyPath: m_TagString
       value: Companion
       objectReference: {fileID: 0}
+    - target: {fileID: 8752224888240831793, guid: 059184e574ec35a4285d224061b2f6a5, type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 1473706672}
     - target: {fileID: 8752224888240831793, guid: 059184e574ec35a4285d224061b2f6a5, type: 3}
       propertyPath: playerTransform
       value: 

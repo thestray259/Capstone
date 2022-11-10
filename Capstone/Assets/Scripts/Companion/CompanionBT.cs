@@ -3,7 +3,8 @@ using BehaviorTree;
 
 public class CompanionBT : Tree
 {
-    public UnityEngine.Transform playerTransform; 
+    public UnityEngine.Transform playerTransform;
+    public UnityEngine.GameObject playerObject; 
     public static float speed = 5.0f;
     public static float fovRange = 6f;
     public static float attackRange = 2f;
@@ -13,6 +14,11 @@ public class CompanionBT : Tree
     {
         Node root = new Selector(new List<Node>
         {
+            new Selector(new List<Node>
+            {
+                new CheckPlayerHealth(transform, playerObject), 
+                new TaskHealPlayer(transform, playerObject)
+            }),
             new Sequence(new List<Node>
             {
                 new CheckEnemyInAttackRange(transform), 
