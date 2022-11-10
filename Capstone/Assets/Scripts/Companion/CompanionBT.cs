@@ -14,7 +14,7 @@ public class CompanionBT : Tree
     {
         Node root = new Selector(new List<Node>
         {
-            new Selector(new List<Node>
+            new Sequence(new List<Node>
             {
                 new CheckPlayerHealth(transform, playerObject), 
                 new TaskHealPlayer(transform, playerObject)

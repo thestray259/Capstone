@@ -25,14 +25,14 @@ public class CheckPlayerHealth : Node
         if (playerObject.GetComponent<Health>().health <= 50)
         {
             Debug.Log("CheckPlayerHealth success"); 
-            state = NodeState.FAILURE;
+            state = NodeState.SUCCESS;
             return state; 
         }
         else
         {
             Debug.Log("CheckPlayerHealth failure"); 
-            state = NodeState.SUCCESS;
+            state = NodeState.FAILURE;
             return state;
-        }        
+        }
     }
 }
