@@ -132,8 +132,6 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Jumping");
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            //velocity.y = jumpForce; 
-            //controller.Move(Vector3.up * jumpForce); 
         } 
     }
 

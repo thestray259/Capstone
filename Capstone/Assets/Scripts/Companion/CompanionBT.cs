@@ -5,10 +5,12 @@ public class CompanionBT : Tree
 {
     public UnityEngine.Transform playerTransform;
     public UnityEngine.GameObject playerObject; 
+
     public static float speed = 5.0f;
     public static float fovRange = 6f;
     public static float attackRange = 2f;
-    public static float damage = 10f; 
+    public static float damage = 10f;
+    public static float healTimer = 0.0f; 
 
     protected override Node SetupTree()
     {
@@ -16,6 +18,7 @@ public class CompanionBT : Tree
         {
             new Sequence(new List<Node>
             {
+                new CheckCanHeal(transform),
                 new CheckPlayerHealth(transform, playerObject), 
                 new TaskHealPlayer(transform, playerObject)
             }),
