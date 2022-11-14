@@ -25,7 +25,7 @@ public class GenEnemyBT : Tree
                 new CheckForPlayer(transform),
                 new TaskGoToPlayer(transform)
             }),
-            new GenEnemyIdle()
+            new GenEnemyIdle(transform)
         });
 
         return root; 
