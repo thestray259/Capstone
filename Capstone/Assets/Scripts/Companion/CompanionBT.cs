@@ -32,7 +32,11 @@ public class CompanionBT : Tree
                 new CheckForEnemy(transform),
                 new TaskGoToEnemy(transform)
             }),
-            new Follow(transform, playerTransform)
+            new Sequence(new List<Node>
+            {
+                new CheckCanFollow(transform, playerObject),
+                new Follow(transform, playerTransform)
+            })            
         });
 
         return root; 

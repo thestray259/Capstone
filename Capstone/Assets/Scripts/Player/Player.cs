@@ -16,13 +16,14 @@ public class Player : MonoBehaviour
     [SerializeField] float damage; 
     [SerializeField] ForceMode forceMode;
     [SerializeField] string tagName;
-
+    
     Rigidbody rb;
     Vector3 force = Vector3.zero; 
     [SerializeField] Vector3 velocity = Vector3.zero;
     bool isGrounded = false; 
     float airTime = 0;
     float distToGround = 0.5f;
+    public bool canFollow = true;
 
     void Start()
     {
@@ -42,35 +43,16 @@ public class Player : MonoBehaviour
         Quaternion viewSpace = Quaternion.AngleAxis(view.rotation.eulerAngles.y, Vector3.up);
         direction = viewSpace * direction;
 
-        // y movement
-        // !!! check if grounded for jump !!!
-/*        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("Jumping");
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-
-            if (velocity.y < 0) velocity.y = 0;
-            velocity.y = jumpForce;
-            rb.velocity += (Vector3.up * jumpForce); 
-            Debug.Log("Y Velocity: " + velocity.y);
-            Debug.Log("RB Y Velocity: " + rb.velocity.y);
-            airTime = 0;
-            if (velocity.y < 0) velocity.y = 0;
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                velocity.y = jumpForce;
-            }
-        }
-        else
-        {
-            airTime += Time.deltaTime;
-        }*/
-        //velocity += Physics.gravity * Time.deltaTime;
-
         // move character (xyz)
         Move(view);
         OnJump();
         OnAttack(); 
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (canFollow == true) canFollow = false;
+            else canFollow = true; 
+        }
 
         // face direction (needs fixing) - works when iskinematic = false 
         if (direction.magnitude > 0)
@@ -126,7 +108,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnJump() // needs work
+    private void OnJump() 
     {
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
