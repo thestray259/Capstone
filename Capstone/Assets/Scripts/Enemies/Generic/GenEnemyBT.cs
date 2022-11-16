@@ -9,7 +9,9 @@ public class GenEnemyBT : Tree
     public static float fovRange = 6f;
     public static float attackRange = 1f;
 
-    public static float damage = 10f; 
+    public static float damage = 10f;
+    public UnityEngine.Animator animator;
+    public Movement movement; 
 
     protected override Node SetupTree()
     {
@@ -29,5 +31,11 @@ public class GenEnemyBT : Tree
         });
 
         return root; 
+    }
+
+    private void Update()
+    {
+        if (_root != null) _root.Evaluate();
+        animator.SetFloat("speed", movement.velocity.magnitude);
     }
 }
