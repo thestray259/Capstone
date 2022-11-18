@@ -889,7 +889,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4925204263729775792, guid: addb5c968196de048a913d043bd2e3c6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4925204263729775792, guid: addb5c968196de048a913d043bd2e3c6, type: 3}
       propertyPath: m_TagString
@@ -1528,8 +1528,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 543450653095714147}
-  distance: 8
-  pitch: 25
+  distance: 3
+  pitch: 15
   sensitivity: 2
   rate: 5
 --- !u!4 &835744538 stripped
@@ -3513,7 +3513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &919132149285012056
 GameObject:
   m_ObjectHideFlags: 0

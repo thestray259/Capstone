@@ -69,10 +69,13 @@ public class Player : MonoBehaviour
 
     private void Move(Transform view)
     {
+        Vector3 forward = view.forward;
+        forward.y = 0; 
+
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             // move forward
-            transform.position += speed * Time.deltaTime * view.forward;
+            transform.position += speed * Time.deltaTime * forward;
         }
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
@@ -84,7 +87,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             // move backwards 
-            transform.position += speed * Time.deltaTime * -view.forward;
+            transform.position += speed * Time.deltaTime * -forward;
         }
 
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
