@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using BehaviorTree; 
 
-public class CompanionBT : Tree
+public class CompanionBT : BTree
 {
     public UnityEngine.Transform playerTransform;
     public UnityEngine.GameObject playerObject; 
