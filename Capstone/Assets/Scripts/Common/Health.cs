@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     [SerializeField] bool destroyRoot = false;
 
     public float health;
-    bool isDead = false; 
+    public bool isDead = false; 
 
     void Start()
     {

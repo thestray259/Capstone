@@ -58,6 +58,9 @@ public class Player : MonoBehaviour
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), turnRate * Time.deltaTime);
         }
+
+        // set animation stuff
+        if (GetComponent<Health>().isDead == true) animator.SetTrigger("dead"); 
     }
 
     private void FixedUpdate()

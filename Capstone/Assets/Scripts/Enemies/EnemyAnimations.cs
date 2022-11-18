@@ -14,6 +14,8 @@ public class EnemyAnimations : MonoBehaviour
 
     void Update()
     {
+        if (this.gameObject.GetComponent<Health>().isDead == true) animator.SetTrigger("dead"); 
+
         animator.SetFloat("speed", movement.velocity.magnitude);
         Debug.Log("Enemy Speed: " + movement.velocity.magnitude); 
     }

@@ -933,6 +933,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 918711994}
     - target: {fileID: 4925204263729775796, guid: addb5c968196de048a913d043bd2e3c6, type: 3}
+      propertyPath: turnRate
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925204263729775796, guid: addb5c968196de048a913d043bd2e3c6, type: 3}
       propertyPath: forceMode
       value: 0
       objectReference: {fileID: 0}
