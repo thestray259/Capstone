@@ -10,11 +10,14 @@ public class Health : MonoBehaviour
     [SerializeField] bool destroyRoot = false;
 
     public float health;
-    public bool isDead = false; 
+    public bool isDead = false;
+
+    Animator animator; 
 
     void Start()
     {
-        health = maxHealth; 
+        health = maxHealth;
+        animator = GetComponent<Animator>(); 
     }
 
     private void Update()
@@ -22,7 +25,8 @@ public class Health : MonoBehaviour
         if (!isDead && health <= 0)
         {
             isDead = true;
-            Debug.Log("Dead"); 
+            Debug.Log("Dead");
+
             if (TryGetComponent<IDestructable>(out IDestructable destructable))
             {
                 destructable.Destroyed();
@@ -35,7 +39,9 @@ public class Health : MonoBehaviour
 
             if (destroyOnDeath)
             {
+                animator.SetTrigger("dead");
                 if (destroyRoot) Destroy(gameObject.transform.root.gameObject);
+                //else Destroy(gameObject, 3.5f); 
                 else gameObject.SetActive(false); // actually disables it, not destroys it 
             }
         }
