@@ -8,11 +8,9 @@ public class GenEnemyBT : BTree
 {
     public static float speed = 5.0f;
     public static float fovRange = 6f;
-    public static float attackRange = 1f;
+    public static float attackRange = 1.3f;
 
     public static float damage = 10f;
-    //public UnityEngine.Animator animator;
-    //public Movement movement; 
 
     protected override Node SetupTree()
     {

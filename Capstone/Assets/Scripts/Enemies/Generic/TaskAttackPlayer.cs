@@ -6,38 +6,48 @@ using BehaviorTree;
 
 public class TaskAttackPlayer : Node
 {
+    private Transform transform; 
     private Transform lastTarget;
 
     private float attackTime = 1f;
     private float attackCounter = 0;
 
-    public TaskAttackPlayer(Transform transform) { }
+    private Animator animator; 
+    private Animator playerAnimator; 
+
+    public TaskAttackPlayer(Transform transform) { this.transform = transform; animator = transform.GetComponent<Animator>(); }
 
     public override NodeState Evaluate()
     {
         Debug.Log("Enemy entered TaskAttackPlayer");
         Transform target = (Transform)GetData("target");
+        //playerAnimator = target.GetComponent<Animator>();
+
         if (target != lastTarget)
         {
             lastTarget = target;
         }
 
-        Collider[] colliders = Physics.OverlapSphere(target.position, GenEnemyBT.attackRange);
+        Collider[] colliders = Physics.OverlapSphere(target.position, GenEnemyBT.attackRange + 1);
 
         attackCounter += Time.deltaTime;
         if (attackCounter >= attackTime)
         {
+            animator.SetBool("walking", false); 
+            animator.SetTrigger("punch"); 
             foreach (Collider collider in colliders)
             {
-                //if (collider.gameObject == component.gameObject) continue; // was breaking it for some reason 
-
                 if (collider.CompareTag("Player"))
                 {
                     if (collider.gameObject.TryGetComponent<Player>(out Player player))
                     {
                         player.gameObject.GetComponent<Health>().health -= GenEnemyBT.damage;
-
-                        if (player.gameObject.GetComponent<Health>().health <= 0) ClearData("target");
+                        //playerAnimator.SetTrigger("hit"); 
+                        if (player.gameObject.GetComponent<Health>().health <= 0)
+                        {
+                            ClearData("target");
+                            //playerAnimator.SetTrigger("dead"); 
+                        }
                     }
                 }
             }

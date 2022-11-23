@@ -6,19 +6,22 @@ using BehaviorTree;
 
 public class TaskAttackEnemy : Node
 {
+    private Transform transform; 
     private Transform lastTarget;
 
     private float attackTime = 1f;
     private float attackCounter = 0;
 
-    private Component component; 
+    private Animator animator; 
+    private Animator enemyAnimator; 
 
-    public TaskAttackEnemy(Transform transform) { }
+    public TaskAttackEnemy(Transform transform) { this.transform = transform; animator = transform.GetComponent<Animator>(); }
 
     public override NodeState Evaluate()
     {
         Debug.Log("Companion entered TaskAttackEnemy"); 
         Transform target = (Transform)GetData("target");
+        enemyAnimator = target.GetComponent<Animator>();
 
         Collider[] colliders = Physics.OverlapSphere(target.position, CompanionBT.attackRange); // used to be lastTarget.position but that was breaking it for some reason
 
@@ -30,6 +33,8 @@ public class TaskAttackEnemy : Node
         attackCounter += Time.deltaTime; 
         if (attackCounter >= attackTime)
         {
+            animator.SetBool("walking", false); 
+            animator.SetTrigger("punch"); 
             foreach (Collider collider in colliders)
             {
                 //if (collider.gameObject == component.gameObject) continue; // was breaking it for some reason 
@@ -39,8 +44,14 @@ public class TaskAttackEnemy : Node
                     if (collider.gameObject.TryGetComponent<GenEnemyBT>(out GenEnemyBT genEnemyBT))
                     {
                         genEnemyBT.gameObject.GetComponent<Health>().health -= CompanionBT.damage;
-
-                        if (genEnemyBT.gameObject.GetComponent<Health>().health <= 0) ClearData("target"); 
+                        // set enemy animation to hit 
+                        enemyAnimator.SetTrigger("hit"); 
+                        if (genEnemyBT.gameObject.GetComponent<Health>().health <= 0)
+                        {
+                            ClearData("target");
+                            // set enemy animation to dead
+                            enemyAnimator.SetTrigger("dead"); 
+                        }
                     }
                 }
             }

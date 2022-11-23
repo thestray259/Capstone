@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         {
             if (canFollow == true) canFollow = false;
             else canFollow = true; 
-        }
+        } // companion follow
 
         // face direction (needs fixing) - works when iskinematic = false 
         if (direction.magnitude > 0)
@@ -60,6 +60,8 @@ public class Player : MonoBehaviour
         }
 
         // set animation stuff
+        animator.SetBool("isGrounded", isGrounded);
+        animator.SetFloat("speed", (direction * speed).magnitude); 
         if (GetComponent<Health>().isDead == true) animator.SetTrigger("dead"); 
     }
 
@@ -119,6 +121,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Jumping");
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            animator.SetTrigger("jump"); 
         } 
     }
 
@@ -132,6 +135,7 @@ public class Player : MonoBehaviour
             Debug.Log("Player Primary Attack");
             // play attack animation 
             // can't interupt animation with other attacks, but can with sprint/dodge 
+            animator.SetTrigger("punch"); 
 
             foreach (Collider collider in colliders)
             {

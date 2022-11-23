@@ -7,9 +7,11 @@ using BehaviorTree;
 public class TaskGoToPlayer : Node
 {
     Transform transform;
-    public float timer = 0.0f; 
+    public float timer = 0.0f;
 
-    public TaskGoToPlayer(Transform transform) { this.transform = transform; }
+    private Animator animator; 
+
+    public TaskGoToPlayer(Transform transform) { this.transform = transform; animator = transform.GetComponent<Animator>(); }
 
     public override NodeState Evaluate()
     {
@@ -20,6 +22,8 @@ public class TaskGoToPlayer : Node
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, GenEnemyBT.speed * Time.deltaTime);
             transform.LookAt(target.position);
+
+            animator.SetBool("walking", true);
 
             if (Vector3.Distance(transform.position, target.position) < 5.0f) timer = 0;
             if (Vector3.Distance(transform.position, target.position) > 5.0f)
