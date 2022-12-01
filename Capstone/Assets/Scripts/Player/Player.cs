@@ -76,29 +76,34 @@ public class Player : MonoBehaviour
         Vector3 forward = view.forward;
         forward.y = 0; 
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        // check if punch anim is playing, if not then can move, if so then can't move 
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
         {
-            // move forward
-            transform.position += speed * Time.deltaTime * forward;
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            {
+                // move forward
+                transform.position += speed * Time.deltaTime * forward;
+            }
+
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            {
+                // move left 
+                transform.position += speed * Time.deltaTime * -view.right;
+            }
+
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                // move backwards 
+                transform.position += speed * Time.deltaTime * -forward;
+            }
+
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            {
+                // move right 
+                transform.position += speed * Time.deltaTime * view.right;
+            }
         }
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            // move left 
-            transform.position += speed * Time.deltaTime * -view.right; 
-        }
-
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            // move backwards 
-            transform.position += speed * Time.deltaTime * -forward;
-        }
-
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            // move right 
-            transform.position += speed * Time.deltaTime * view.right;
-        }
     }
 
     private void GroundCheck()
