@@ -21,7 +21,19 @@ public class GenEnemyIdle : Node
 
         if (initialPosition == new Vector3(0, 0, 0)) initialPosition = transform.position;
 
-        if (transform.position != initialPosition)
+        Vector3 initMax = initialPosition + new Vector3(0.2f, 0.2f, 0.2f);
+        Vector3 initMin = initialPosition - new Vector3(0.2f, 0.2f, 0.2f);
+        bool isAwayFromStart;
+
+        if ((transform.position.x < initMin.x || transform.position.z < initMin.z) || (transform.position.x > initMax.x || transform.position.z > initMax.z))
+        {
+            Debug.Log("Enemy - isAwayFromStart is true");
+            isAwayFromStart = true;
+        }
+        else { isAwayFromStart = false; Debug.Log("Enemy - isAwyFromStart is false"); }
+
+        //if (transform.position != initialPosition)
+        if (isAwayFromStart == true)
         {
             animator.SetBool("walking", true);
             Debug.Log("Enemy moving towards Initial Pos"); 
